@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - "frontendvolume:/frontend"
+    networks:
+      - zappnetwork
+    depends_on:
+      - database
+    command: npm start
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - "backendvolume:/backend"
+    networks:
+      - zappnetwork
+    depends_on:
+      - database
+    command: npm start
+  database:
+    image: postgres:latest
+    container_name: zapp-man
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: postgres
+      POSTGRES_DB: zapp_db
+    networks:
+      - zappnetwork
+networks:
+  zappnetwork:
+    driver: bridge
+volumes:
+  frontendvolume:
+  backendvolume:

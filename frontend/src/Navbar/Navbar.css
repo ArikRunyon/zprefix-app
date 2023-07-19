@@ -1,0 +1,46 @@
+#navbarContainer {
+    background-color: #176B87;
+    padding: .5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    border-bottom: solid;
+    border-bottom-color: #64CCC5;
+}
+
+#appTitle {
+    margin: 0;
+    font-size: 2rem;
+    color: #64CCC5;
+    letter-spacing: 0.25rem;
+    text-decoration: none;
+}
+
+#username {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #64CCC5;
+    letter-spacing: 0.25rem;
+    text-decoration: none;
+}
+
+.navButton {
+    border: none;
+    background-color: inherit;
+    font-size: 1.5rem;
+    color: #64CCC5;
+    letter-spacing: 0.25rem;
+    height: 2rem;
+    margin: .25rem;
+}
+
+.navButton:hover{
+    color: #001C30;
+    cursor: pointer;
+}
+
+#appTitle:hover {
+    color: #001C30;
+}

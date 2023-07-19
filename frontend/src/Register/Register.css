@@ -1,0 +1,67 @@
+#regCon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1rem;
+    color: #001C30;
+    background-color: #176B87;
+    height: 30rem;
+    border-radius: 1rem;
+    border-style: solid;
+    border-color: #64CCC5;
+    font-size: 1.5rem;
+}
+
+#regCon input {
+    color: #64CCC5;
+    outline-color: #64CCC5;
+    border-radius: 1rem;
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1rem;
+    border-color: #64CCC5;
+    background-color: #001C30;
+}
+
+#regCon input::placeholder {
+    color: #64CCC5;
+}
+
+#regCon button{
+    width: 20rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: #001C30;
+    color: #64CCC5;
+    border: none;
+    align-self: center;
+}
+
+#regCon button:hover {
+    border-style: solid;
+    border-color: #64CCC5;
+    cursor: pointer;
+}
+
+#regCon span {
+    font-size: 1rem;
+    margin: -1rem;
+    align-self: center;
+    letter-spacing: 0.25rem;
+}
+
+#regwrapper {
+    width: 30rem;
+    position: absolute;
+    display: block;
+    margin-left: -15rem;
+    margin-top: -15rem;
+    left: 50%;
+    top: 50%;
+}
+
+#regCon button:disabled {
+    color: darkgrey;
+    border-color: darkgrey;
+    cursor: not-allowed;
+}

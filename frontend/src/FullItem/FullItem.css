@@ -1,0 +1,77 @@
+#fullitem {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-color: #64CCC5;
+    color: #001C30;
+    padding: 1rem;
+    width: 30rem;
+    height: 20rem;
+    background-color: #176B87;
+    letter-spacing: 0.05rem;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+
+#fullwrapper {
+    width: 30rem;
+    position: absolute;
+    display: block;
+    margin-left: -15rem;
+    margin-top: -10rem;
+    left: 50%;
+    top: 50%;
+}
+
+#fullitem button {
+    width: 10rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: #001C30;
+    color: #64CCC5;
+    border: none;
+    margin: 1rem;
+}
+
+#fullitem button:hover {
+    cursor: pointer;
+    border-style: solid;
+    border-color: #64CCC5;
+}
+
+
+
+#fullitem span {
+    color: #64CCC5;
+}
+
+#fullitem input {
+    color: #64CCC5;
+    outline-color: #64CCC5;
+    border-radius: 1rem;
+    height: 1rem;
+    padding-left: 1rem;
+    border-color: #64CCC5;
+    background-color: #001C30;
+}
+
+#fullitem input::placeholder {
+    color: #64CCC5;
+}
+
+#fullitem textarea {
+    color: #64CCC5;
+    outline-color: #64CCC5;
+    border-radius: 1rem;
+    height: 5rem;
+    width: 28rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-color: #64CCC5;
+    background-color: #001C30;
+    resize: none;
+}
+
+#fullitem textarea::placeholder {
+    color: #64CCC5;
+}

@@ -1,0 +1,7 @@
+body, html {
+  background: #001C30;
+  margin: 0;
+  height: 100%;
+  font-family: Luminari, fantasy;
+  overflow-x:hidden;
+}
