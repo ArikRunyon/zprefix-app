@@ -12,22 +12,26 @@ app.use(cors({
 
 app.use(express.json())
 
+//home page message, not actually used
 app.get('/' , (req, res) => {
   res.status(200).json("Welcome!")
 })
 
+//retrieves the entire item list
 app.get('/inventory' , (req, res) => {
   knex('inventory')
     .select('*')
     .then(data => res.status(200).json(data))
 })
 
+//gets all users, only used for testing...i think
 app.get('/users' , (req, res) => {
   knex('users')
     .select('*')
     .then(data => res.status(200).json(data))
 })
 
+//if username is available, posts a new user to the DB
 app.post('/register', (req,res) => {
   const newUser = req.body;
   const tempPass = newUser.password;
@@ -59,6 +63,8 @@ app.post('/register', (req,res) => {
     })
 })
 
+
+//used to check username and password to login and create a client side state "token". I know...super *secure*
 app.post('/login', (req,res) => {
   const username = req.body.username
   const password = req.body.password
@@ -88,6 +94,7 @@ app.post('/login', (req,res) => {
     })
 })
 
+//retrieves a single item from the db
 app.get('/inventory/:id', (req,res) => {
   let id = req.params.id
   knex('inventory')
@@ -96,6 +103,7 @@ app.get('/inventory/:id', (req,res) => {
     .then(data => res.status(200).json(data))
 })
 
+//edit and update the specific item
 app.patch('/inventory/:id', (req,res) => {
   let id = req.params.id
   const updatedItem = req.body;
@@ -105,6 +113,7 @@ app.patch('/inventory/:id', (req,res) => {
     .then(data => res.status(200).json('Updated!'))
 })
 
+//deletes the specific item from the DB
 app.delete('/inventory/:id', (req,res) => {
   let id = req.params.id
   knex('inventory')
@@ -113,6 +122,7 @@ app.delete('/inventory/:id', (req,res) => {
     .then(data => res.status(200).json('Deleted!'))
 })
 
+//adds a new item to the db
 app.post('/inventory', (req,res) => {
   const newItem = req.body;
   knex('inventory')
@@ -120,6 +130,7 @@ app.post('/inventory', (req,res) => {
     .then(data => res.status(200).json('Posted!'))
 })
 
+//retrieves the item list specific to the user logged in
 app.get('/userinventory/:id', (req,res) => {
   let id = req.params.id
   knex('inventory')
@@ -128,12 +139,13 @@ app.get('/userinventory/:id', (req,res) => {
     .then(data => res.status(200).json(data))
 })
 
+
+//used to check the token username against the database
 app.post('/logcheck', (req,res) => {
   knex('users')
     .count('*')
     .where('username', req.body.username)
     .then(data => {
-      console.log(data)
       if(data[0].count === '1') {
         res.status(200).send({check: 'good'})
       } else {
@@ -142,6 +154,8 @@ app.post('/logcheck', (req,res) => {
     })
 })
 
+
+//checks that the username isnt taken during registration
 app.post('/usercheck', (req,res) => {
   const username = req.body.username
   knex('users')
@@ -156,14 +170,10 @@ app.post('/usercheck', (req,res) => {
     })
 })
 
-app.post('/inventory', (req,res) => {
-  knex('inventory')
-    .insert(req.body)
-    .then(data => res.status(200).send())
-})
-
+//catches any url requests the don't exist
 app.all('*', (req,res) => {
   res.status(400).json('Page does not exist!')
 })
 
+//the port the server listens on
 app.listen(port, () => console.log(`You are now listening live at http://localhost:${port}!`))
