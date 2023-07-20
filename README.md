@@ -2,6 +2,8 @@
 
 The first step in running this locally to your machine is to ensure that you have docker installed. (I imagine, I'm nowhere close to an expert, probably wouldn't even qualify as an apprentice!)
 
+Now make sure docker is running!
+
 After that you'll need to fork and clone down this repo.
 
 Once that is done use a terminal to navigate into the primary folder "zprefix-app".
