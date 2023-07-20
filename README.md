@@ -17,3 +17,5 @@ This command will build or pull down the images you need, and install all of the
 To use the application open a new chrome tab and navigate to "http://localhost:3000/". (I will not, nor cannot, guarantee the operation of this app outside of chrome...or inside chrome for that matter. Only a sith deals in guarantees.)
 
 If the page loads up, great! You can now use the app! If not, I clearly needed to do more testing. Uh oh. Uh...sorry?
+
+When you are done, run "docker compose down --volumes"
