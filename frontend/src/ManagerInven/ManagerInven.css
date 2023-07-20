@@ -1,0 +1,13 @@
+#manCon {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 1rem;
+    margin-left: 6rem;
+}
+
+.message {
+    margin: 1rem;
+    color: #64CCC5;
+    font-size: 2rem;
+}

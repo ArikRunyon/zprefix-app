@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import InventoryItem from '../InventoryItem/InventoryItem.js';
+import './Inventory.css'
 
 const Inventory = () => {
     const [inventory, setInventory] = useState([])
@@ -12,7 +13,7 @@ const Inventory = () => {
 
     if(inventory.length > 0) {
         return (
-            <div>
+            <div id='invenCon'>
                 {inventory.map(item => {
                     return <InventoryItem value={item} key={item.id} />
                 })}

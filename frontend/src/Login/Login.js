@@ -2,12 +2,14 @@ import React, {useState, useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
 import './Login.css'
 import {TokenContext} from '../App.js'
+import { useAlert } from 'react-alert'
 
 const Login = () => {
     const {token, setToken, userIn, setUserIn} = useContext(TokenContext);
     const [username, setUsername] = useState([])
     const [password, setPassword] = useState([])
     const navigate = useNavigate()
+    const alert = useAlert()
 
     return (
         <div id='loginwrapper'>
@@ -27,11 +29,20 @@ const Login = () => {
                             body: JSON.stringify({'username': username, 'password': password})
                           };
                         fetch('http://localhost:8080/login', init)
+                            .then(async res => {
+                                let status = res.status;
+                                let newData = await res.json();
+                                return {'status': status, 'data': newData}
+                            })
                             .then(async data => {
                                 if (data.status === 200) {
-                                    await setToken(await data.json())
+                                    await setToken(data.data)
                                     await setUserIn(true)
-                                    navigate('/inventory')
+                                    alert.success(`Welcome Back, ${data.data.username}!`, {
+                                        timeout: 2000,
+                                        onClose: () => {
+                                            navigate(`/userinventory/${data.data.user_id}`)
+                                        }})
                                 } else if (data.status === 400) {
                                     alert.error('Oh no, something went wrong!', {timeout: 2000})
                                 }

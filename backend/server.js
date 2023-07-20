@@ -105,6 +105,29 @@ app.patch('/inventory/:id', (req,res) => {
     .then(data => res.status(200).json('Updated!'))
 })
 
+app.delete('/inventory/:id', (req,res) => {
+  let id = req.params.id
+  knex('inventory')
+    .where('id', id)
+    .del()
+    .then(data => res.status(200).json('Deleted!'))
+})
+
+app.post('/inventory', (req,res) => {
+  const newItem = req.body;
+  knex('inventory')
+    .insert(newItem)
+    .then(data => res.status(200).json('Posted!'))
+})
+
+app.get('/userinventory/:id', (req,res) => {
+  let id = req.params.id
+  knex('inventory')
+    .select('*')
+    .where('user_id', id)
+    .then(data => res.status(200).json(data))
+})
+
 app.post('/logcheck', (req,res) => {
   knex('users')
     .count('*')
@@ -137,6 +160,10 @@ app.post('/inventory', (req,res) => {
   knex('inventory')
     .insert(req.body)
     .then(data => res.status(200).send())
+})
+
+app.all('*', (req,res) => {
+  res.status(400).json('Page does not exist!')
 })
 
 app.listen(port, () => console.log(`You are now listening live at http://localhost:${port}!`))

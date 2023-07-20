@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import { useNavigate } from 'react-router'
 import './FullItem.css'
 import {TokenContext} from '../App.js'
+import { useAlert } from 'react-alert'
 
 const FullItem = () => {
     const {token, setToken, userIn, setUserIn} = useContext(TokenContext);
@@ -13,6 +14,7 @@ const FullItem = () => {
     const [iquan, setIquan] = useState([])
     const [idesc, setIdesc] = useState([])
     const navigate = useNavigate()
+    const alert = useAlert()
     useEffect(()=>{
         fetch(`http://localhost:8080/inventory/${id}`)
             .then(res => res.json())
@@ -70,7 +72,24 @@ const FullItem = () => {
                         setIname(item.item_name)
                         setIquan(item.quantity)
                         setEditmode(true);
-                    }}>Edit Item</button></div> : <button onClick={()=>{
+                    }}>Edit Item</button><button onClick={()=>{
+                        const init = {
+                            method: 'DELETE',
+                            headers: {'Content-Type': 'application/json'}
+                          };
+                        fetch(`http://localhost:8080/inventory/${id}`, init)
+                            .then(res => {
+                                if(res.status === 200) {
+                                    alert.success(`${item.item_name} Deleted!`, {
+                                        timeout: 2000,
+                                        onClose: () => {
+                                            navigate(`/userinventory/${token.user_id}`)
+                                        }})
+                                } else {
+                                    alert.error('Oh no, something went wrong!', {timeout: 2000})
+                                }
+                            })
+                    }}>Delete Item</button></div> : <button onClick={()=>{
                         navigate(`/inventory`)
                     }}>Back to List</button>}
                 </div>

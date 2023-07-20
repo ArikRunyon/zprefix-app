@@ -29,17 +29,24 @@ const Navbar = () => {
     return (
         <div id='navbarContainer'>
             <div>
-                {userIn ? <button className='navButton' onClick={()=>{
+                {userIn ? <button className='navButton' onClick={async ()=>{
+                    await setToken([])
+                    await setUserIn(false)
                     navigate('/login')
-                    setToken([])
                 }}>Logout</button> : <button className='navButton' onClick={()=>{
                     navigate('/login')
                 }}>Login</button>}
-                {userIn ? <button className='navButton' onClick={()=>{
+                {userIn ? <>|<button className='navButton' onClick={()=>{
+                    navigate(`/userinventory/${token.user_id}`)
+                }}>My Inventory</button>|<button className='navButton' onClick={()=>{
                     navigate('/inventory')
-                }}>Manage Inventory</button> : <></>}
+                }}>View All Inventory</button>|<button className='navButton' onClick={()=>{
+                    navigate('/newitem')
+                }}>Add New Item</button></> : <>|<button className='navButton' onClick={()=>{
+                    navigate('/inventory')
+                }}>View All Inventory</button></>}
             </div>
-            {userIn ? <span id='username'>Welcome, {token.username.toUpperCase()}!</span> : <></>}
+            {userIn && token.length > 0 ? <span id='username'>Welcome, {token.username.toUpperCase()}!</span> : <></>}
             <Link id="appTitle" to= '/' style={{ textDecoration: 'none' }}>Zapp Manager</Link>
         </div>
     )
