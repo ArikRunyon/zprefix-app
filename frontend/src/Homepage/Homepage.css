@@ -1,11 +1,12 @@
 #homeCon {
     margin: 10rem;
-    margin-left: 25rem;
-    color: #64CCC5;
+    margin-left: 35rem;
+    color: #69B0C1;
     font-size: 2rem;
     border-style: solid;
     border-radius: 1rem;
     padding: 1rem;
     text-align: center;
     width: 50rem;
+    background-color: #6D6192;
 }

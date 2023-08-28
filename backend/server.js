@@ -17,9 +17,16 @@ app.get('/' , (req, res) => {
   res.status(200).json("Welcome!")
 })
 
-//retrieves the entire item list
-app.get('/inventory' , (req, res) => {
-  knex('inventory')
+//retrieves the entire ingredients list
+app.get('/ingredients' , (req, res) => {
+  knex('ingredients')
+    .select('*')
+    .then(data => res.status(200).json(data))
+})
+
+//retrieves the entire meal list
+app.get('/meals' , (req, res) => {
+  knex('meals')
     .select('*')
     .then(data => res.status(200).json(data))
 })
@@ -95,45 +102,90 @@ app.post('/login', (req,res) => {
 })
 
 //retrieves a single item from the db
-app.get('/inventory/:id', (req,res) => {
+app.get('/ingredients/:id', (req,res) => {
   let id = req.params.id
-  knex('inventory')
+  knex('ingredients')
     .select('*')
     .where('id', id)
     .then(data => res.status(200).json(data))
 })
 
 //edit and update the specific item
-app.patch('/inventory/:id', (req,res) => {
+app.patch('/ingredients/:id', (req,res) => {
   let id = req.params.id
   const updatedItem = req.body;
-  knex('inventory')
+  knex('ingredients')
     .where('id', id)
     .update(updatedItem)
     .then(data => res.status(200).json('Updated!'))
 })
 
 //deletes the specific item from the DB
-app.delete('/inventory/:id', (req,res) => {
+app.delete('/ingredients/:id', (req,res) => {
   let id = req.params.id
-  knex('inventory')
+  knex('ingredients')
     .where('id', id)
     .del()
     .then(data => res.status(200).json('Deleted!'))
 })
 
 //adds a new item to the db
-app.post('/inventory', (req,res) => {
+app.post('/ingredients', (req,res) => {
   const newItem = req.body;
-  knex('inventory')
+  knex('ingredients')
+    .insert(newItem)
+    .then(data => res.status(200).json('Posted!'))
+})
+
+//retrieves a single item from the db
+app.get('/meals/:id', (req,res) => {
+  let id = req.params.id
+  knex('meals')
+    .select('*')
+    .where('id', id)
+    .then(data => res.status(200).json(data))
+})
+
+//edit and update the specific item
+app.patch('/meals/:id', (req,res) => {
+  let id = req.params.id
+  const updatedItem = req.body;
+  knex('meals')
+    .where('id', id)
+    .update(updatedItem)
+    .then(data => res.status(200).json('Updated!'))
+})
+
+//deletes the specific item from the DB
+app.delete('/meals/:id', (req,res) => {
+  let id = req.params.id
+  knex('meals')
+    .where('id', id)
+    .del()
+    .then(data => res.status(200).json('Deleted!'))
+})
+
+//adds a new item to the db
+app.post('/meals', (req,res) => {
+  const newItem = req.body;
+  knex('meals')
     .insert(newItem)
     .then(data => res.status(200).json('Posted!'))
 })
 
 //retrieves the item list specific to the user logged in
-app.get('/userinventory/:id', (req,res) => {
+app.get('/useringredients/:id', (req,res) => {
   let id = req.params.id
-  knex('inventory')
+  knex('ingredients')
+    .select('*')
+    .where('user_id', id)
+    .then(data => res.status(200).json(data))
+})
+
+//retrieves the item list specific to the user logged in
+app.get('/usermeals/:id', (req,res) => {
+  let id = req.params.id
+  knex('meals')
     .select('*')
     .where('user_id', id)
     .then(data => res.status(200).json(data))

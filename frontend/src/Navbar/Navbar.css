@@ -1,5 +1,5 @@
 #navbarContainer {
-    background-color: #176B87;
+    background-color: #6D6192;
     padding: .5rem;
     display: flex;
     flex-direction: row;
@@ -7,13 +7,13 @@
     justify-content: space-between;
     height: 3rem;
     border-bottom: solid;
-    border-bottom-color: #64CCC5;
+    border-bottom-color: #69B0C1;
 }
 
 #appTitle {
     margin: 0;
     font-size: 2rem;
-    color: #64CCC5;
+    color: #69B0C1;
     letter-spacing: 0.25rem;
     text-decoration: none;
 }
@@ -21,7 +21,7 @@
 #username {
     margin: 0;
     font-size: 1.5rem;
-    color: #64CCC5;
+    color: #69B0C1;
     letter-spacing: 0.25rem;
     text-decoration: none;
 }
@@ -30,17 +30,17 @@
     border: none;
     background-color: inherit;
     font-size: 1.5rem;
-    color: #64CCC5;
+    color: #69B0C1;
     letter-spacing: 0.25rem;
     height: 2rem;
     margin: .25rem;
 }
 
 .navButton:hover{
-    color: #001C30;
+    color: #92E0A9;
     cursor: pointer;
 }
 
 #appTitle:hover {
-    color: #001C30;
+    color: #92E0A9;
 }

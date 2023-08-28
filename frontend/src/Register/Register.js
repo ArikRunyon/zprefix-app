@@ -102,7 +102,7 @@ const Register = () => {
                                             if (data.status === 200) {
                                                 await setToken(await data.json())
                                                 await setUserIn(true)
-                                                navigate('/inventory')
+                                                navigate('/ingredients')
                                             } else if (data.status === 400) {
                                                 alert.error('Oh no, something went wrong!', {timeout: 2000})
                                             }

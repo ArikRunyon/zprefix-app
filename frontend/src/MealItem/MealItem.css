@@ -1,0 +1,28 @@
+#mealCon{
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-color: #69B0C1;
+    color: #352D4D;
+    padding: 1rem;
+    width: 15rem;
+    height: 15rem;
+    background-color: #6D6192;
+    letter-spacing: 0.05rem;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+
+#mealCon:hover {
+    border-color: #92E0A9;
+    color: #92E0A9;
+    cursor: pointer;
+}
+
+#mealCon span {
+    color: #69B0C1;
+}
+
+#mealCon:hover span {
+    color: #92E0A9;
+}

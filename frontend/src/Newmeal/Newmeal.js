@@ -1,17 +1,27 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { useNavigate } from 'react-router'
 import {TokenContext} from '../App.js'
 import { useAlert } from 'react-alert'
+import './Newmeal.css'
 
 
-const Newitem = () => {
+const Newmeal = () => {
     const {token, userIn} = useContext(TokenContext);
     let id = token.user_id
-    const [iname, setIname] = useState([])
-    const [iquan, setIquan] = useState([])
-    const [idesc, setIdesc] = useState([])
+    const [iname, setIname] = useState(null)
+    const [icook, setIcook] = useState(null)
+    const [igred, setIgred] = useState(null)
+    const [ireci, setIreci] = useState(null)
     const navigate = useNavigate()
     const alert = useAlert()
+
+    useEffect(()=>{
+        if (iname === null || icook === null || igred === null || ireci === null || iname === "" || icook === "" || igred === "" || ireci === "") {
+            document.getElementById("saveBtn").disabled = true;
+        } else {
+            document.getElementById("saveBtn").disabled = false;
+        }
+    }, [iname, icook, igred, ireci])
 
     if (userIn) {
         return (
@@ -20,27 +30,30 @@ const Newitem = () => {
                     <p>Name: <input id='iname' type='text' onChange={()=>{
                         setIname(document.getElementById('iname').value)
                     }}/></p>
-                    <p>Quantity: <input id='iquan' type='integer' onChange={()=>{
-                        setIquan(document.getElementById('iquan').value)
+                    <p>Cook Time In Minutes: <input id='icook' type='number' onChange={()=>{
+                        setIcook(document.getElementById('icook').value)
                     }}/></p>
-                    <p>Description: <textarea id='idesc' onChange={()=>{
-                        setIdesc(document.getElementById('idesc').value)
+                    <p>Ingredients: <textarea id='igred' onChange={()=>{
+                        setIgred(document.getElementById('igred').value)
+                    }}/></p>
+                    <p>Recipe: <textarea id='ireci' onChange={()=>{
+                        setIreci(document.getElementById('ireci').value)
                     }}/></p>
                     <div><button onClick={()=>{
-                        navigate(`/inventory`)
-                    }}>Back to List</button><button onClick={()=>{
+                        navigate(`/meals`)
+                    }}>Back to List</button><button id='saveBtn' onClick={()=>{
                         const init = {
                             method: 'POST',
                             headers: {'Content-Type': 'application/json'},
-                            body: JSON.stringify({'user_id': id, 'item_name': iname, 'quantity': iquan, 'description': idesc})
+                            body: JSON.stringify({'user_id': id, 'name': iname, 'cook_time_in_minutes': icook, 'ingredients': igred, 'recipe': ireci})
                         };
-                        fetch(`http://localhost:8080/inventory`, init)
+                        fetch(`http://localhost:8080/meals`, init)
                             .then(res => {
                                 if(res.status === 200) {
                                     alert.success(`${iname} Posted!`, {
                                         timeout: 2000,
                                         onClose: () => {
-                                            navigate(`/userinventory/${id}`)
+                                            navigate(`/usermeals/${id}`)
                                         }})
                                 } else {
                                     alert.error('Oh no, something went wrong!', {timeout: 2000})
@@ -55,4 +68,4 @@ const Newitem = () => {
     }
 }
 
-export default Newitem
+export default Newmeal

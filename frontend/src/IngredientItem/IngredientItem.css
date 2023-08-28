@@ -1,0 +1,28 @@
+#ingredCon{
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-color: #69B0C1;
+    color: #352D4D;
+    padding: 1rem;
+    width: 15rem;
+    height: 15rem;
+    background-color: #6D6192;
+    letter-spacing: 0.05rem;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+
+#ingredCon:hover {
+    border-color: #92E0A9;
+    color: #92E0A9;
+    cursor: pointer;
+}
+
+#ingredCon span {
+    color: #69B0C1;
+}
+
+#ingredCon:hover span {
+    color: #92E0A9;
+}

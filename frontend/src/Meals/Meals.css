@@ -1,0 +1,7 @@
+#invenCon {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 1rem;
+    margin-left: 6rem;
+}

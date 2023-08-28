@@ -37,17 +37,25 @@ const Navbar = () => {
                     navigate('/login')
                 }}>Login</button>}
                 {userIn ? <>|<button className='navButton' onClick={()=>{
-                    navigate(`/userinventory/${token.user_id}`)
-                }}>My Inventory</button>|<button className='navButton' onClick={()=>{
-                    navigate('/inventory')
-                }}>View All Inventory</button>|<button className='navButton' onClick={()=>{
-                    navigate('/newitem')
-                }}>Add New Item</button></> : <>|<button className='navButton' onClick={()=>{
-                    navigate('/inventory')
-                }}>View All Inventory</button></>}
+                    navigate(`/useringredients/${token.user_id}`)
+                }}>My Ingredients</button>|<button className='navButton' onClick={()=>{
+                    navigate(`/usermeals/${token.user_id}`)
+                }}>My Meals</button>|<button className='navButton' onClick={()=>{
+                    navigate('/ingredients')
+                }}>View All Ingredients</button>|<button className='navButton' onClick={()=>{
+                    navigate('/meals')
+                }}>View All Meals</button>|<button className='navButton' onClick={()=>{
+                    navigate('/newingredient')
+                }}>Add New Ingredient</button>|<button className='navButton' onClick={()=>{
+                    navigate('/newmeal')
+                }}>Add New Meal</button></> : <>|<button className='navButton' onClick={()=>{
+                    navigate('/ingredients')
+                }}>View All Ingredients</button>|<button className='navButton' onClick={()=>{
+                    navigate('/meals')
+                }}>View All Meals</button></>}
             </div>
             {userIn && token.length > 0 ? <span id='username'>Welcome, {token.username.toUpperCase()}!</span> : <></>}
-            <Link id="appTitle" to= '/' style={{ textDecoration: 'none' }}>Zapp Manager</Link>
+            <Link id="appTitle" to= '/' style={{ textDecoration: 'none' }}>Zapp Foods</Link>
         </div>
     )
 }

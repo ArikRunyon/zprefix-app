@@ -1,0 +1,5 @@
+#saveBtn:disabled {
+    color: darkgrey;
+    border-color: darkgrey;
+    cursor: not-allowed;
+}

@@ -2,13 +2,17 @@ import './App.css';
 import Navbar from './Navbar/Navbar.js'
 import Login from './Login/Login.js';
 import Register from './Register/Register.js';
-import Inventory from './Inventory/Inventory.js';
+import Ingredients from './Ingredients/Ingredients.js';
 import {Routes, Route} from 'react-router-dom'
-import React, {useContext, useState} from 'react'
+import React, {useState} from 'react'
 import FullItem from './FullItem/FullItem.js';
 import Homepage from './Homepage/Homepage.js';
-import ManagerInven from './ManagerInven/ManagerInven';
-import Newitem from './Newitem/Newitem';
+import UserIngred from './UserIngred/UserIngred';
+import Newingredient from './Newingredient/Newingredient';
+import Meals from './Meals/Meals'
+import FullMeal from './FullMeal/FullMeal'
+import UserMeal from './UserMeal/UserMeal'
+import Newmeal from './Newmeal/Newmeal'
 
 export const TokenContext = React.createContext()
 function App() {
@@ -23,10 +27,14 @@ function App() {
             <Route path='/' element={<Homepage/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
-            <Route path='/inventory' element={<Inventory/>}/>
-            <Route path='/inventory/:id' element={<FullItem/>}/>
-            <Route path='/userinventory/:id' element={<ManagerInven/>}/>
-            <Route path='/newitem' element={<Newitem/>}/>
+            <Route path='/ingredients' element={<Ingredients/>}/>
+            <Route path='/meals' element={<Meals/>}/>
+            <Route path='/ingredients/:id' element={<FullItem/>}/>
+            <Route path='/meals/:id' element={<FullMeal/>}/>
+            <Route path='/useringredients/:id' element={<UserIngred/>}/>
+            <Route path='/usermeals/:id' element={<UserMeal/>}/>
+            <Route path='/newingredient' element={<Newingredient/>}/>
+            <Route path='/newmeal' element={<Newmeal/>}/>
           </Routes>
         </header>
       </div>

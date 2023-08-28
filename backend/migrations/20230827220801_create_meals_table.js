@@ -3,16 +3,15 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    return knex.schema.createTable('ingredients', table => {
+    return knex.schema.createTable('meals', table => {
         table.increments().primary();
         table.integer('user_id').unsigned();
         table.foreign('user_id').references('users.id').onDelete('set null')
-        table.text('item_name');
-        table.text('benefits');
-        table.text('drawbacks');
-        table.text('grow_season');
+        table.text('name')
+        table.integer('cook_time_in_minutes')
+        table.text('ingredients')
+        table.text('recipe')
     })
-  
 };
 
 /**
@@ -20,5 +19,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('ingredients');
+    return knex.schema.dropTableIfExists('meals');
 };

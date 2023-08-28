@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import InventoryItem from '../InventoryItem/InventoryItem.js';
-import './Inventory.css'
+import MealItem from '../MealItem/MealItem.js';
+import './Meals.css'
 
-const Inventory = () => {
+const Meals = () => {
     const [inventory, setInventory] = useState([])
 
     useEffect(()=>{
-        fetch('http://localhost:8080/inventory')
+        fetch('http://localhost:8080/meals')
             .then(res => res.json())
             .then(data => setInventory(data))
     }, [])
@@ -15,11 +15,11 @@ const Inventory = () => {
         return (
             <div id='invenCon'>
                 {inventory.map(item => {
-                    return <InventoryItem value={item} key={item.id} />
+                    return <MealItem value={item} key={item.id} />
                 })}
             </div>
         )
     }
 }
 
-export default Inventory
+export default Meals

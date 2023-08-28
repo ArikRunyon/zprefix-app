@@ -41,7 +41,7 @@ const Login = () => {
                                     alert.success(`Welcome Back, ${data.data.username}!`, {
                                         timeout: 2000,
                                         onClose: () => {
-                                            navigate(`/userinventory/${data.data.user_id}`)
+                                            navigate(`/useringredients/${data.data.user_id}`)
                                         }})
                                 } else if (data.status === 400) {
                                     alert.error('Oh no, something went wrong!', {timeout: 2000})

@@ -1,17 +1,17 @@
 import React, {useEffect, useState, useContext} from 'react'
-import InventoryItem from '../InventoryItem/InventoryItem.js';
+import IngredientItem from '../IngredientItem/IngredientItem.js';
 import { useParams } from 'react-router';
 import {TokenContext} from '../App.js'
-import './ManagerInven.css'
+import './UserIngred.css'
 
 
-const ManagerInven = () => {
+const UserIngred = () => {
     const [inventory, setInventory] = useState([])
     const id = useParams().id
-    const {token, setToken, userIn, setUserIn} = useContext(TokenContext);
+    const {userIn} = useContext(TokenContext);
 
     useEffect(()=>{
-        fetch(`http://localhost:8080/userinventory/${id}`)
+        fetch(`http://localhost:8080/useringredients/${id}`)
             .then(res => res.json())
             .then(data => setInventory(data))
     }, [id])
@@ -21,16 +21,16 @@ const ManagerInven = () => {
             return (
                 <div id='manCon'>
                     {inventory.map(item => {
-                        return <InventoryItem value={item} key={item.id} />
+                        return <IngredientItem value={item} key={item.id} />
                     })}
                 </div>
             )
         } else {
-            return <div className='message'>You haven't added any items yet! To add an item click "Add New Item" above!</div>
+            return <div className='message'>You haven't added any ingredients yet! To add an item click "Add New Item" above!</div>
         }
     } else {
         return <div className='message'>You aren't logged in! Login to view this page!</div>
     }
 }
 
-export default ManagerInven
+export default UserIngred
